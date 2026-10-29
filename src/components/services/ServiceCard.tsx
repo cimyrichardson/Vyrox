@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import type { Service } from "@/types/catalog";
 
@@ -10,7 +11,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const Icon = service.icon;
 
   return (
-    <Card className="h-full p-5 transition-colors duration-200 hover:border-accent/35 sm:p-6">
+    <Card className="h-full p-5 hover:border-accent/35 sm:p-6">
       <span className="inline-flex size-11 items-center justify-center rounded-control bg-bg-muted text-accent">
         <Icon aria-hidden="true" size={21} strokeWidth={1.8} />
       </span>
@@ -20,13 +21,13 @@ export function ServiceCard({ service }: ServiceCardProps) {
       <p className="mt-2 min-h-12 text-sm leading-6 text-text-muted">
         {service.description}
       </p>
-      <a
-        href={`/services?service=${service.slug}`}
+      <Link
+        href={`/services/${service.slug}`}
         className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-primary"
       >
         En savoir plus
         <ArrowUpRight aria-hidden="true" size={16} />
-      </a>
+      </Link>
     </Card>
   );
 }

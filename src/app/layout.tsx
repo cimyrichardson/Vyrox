@@ -1,25 +1,31 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import type { ReactNode } from "react";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { PageTransition } from "@/components/motion/PageTransition";
 import "@/styles/globals.css";
 
-const inter = Inter({
+const inter = localFont({
+  src: "./fonts/inter-latin.woff2",
   variable: "--font-inter",
-  subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: "400 700",
 });
 
-const manrope = Manrope({
+const manrope = localFont({
+  src: "./fonts/manrope-latin.woff2",
   variable: "--font-manrope",
-  subsets: ["latin"],
   display: "swap",
-  weight: ["600", "700", "800"],
+  weight: "600 800",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://vyrox.ht"),
-  title: "Vyrox — La technologie au service de votre réussite",
+  title: {
+    default: "Vyrox — La technologie au service de votre réussite",
+    template: "%s | Vyrox",
+  },
   description:
     "Équipez et accompagnez vos projets avec des produits informatiques et des services technologiques fiables en Haïti et à l’international.",
 };
@@ -31,7 +37,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a className="skip-link" href="#contenu-principal">
           Aller au contenu principal
         </a>
-        {children}
+        <Header />
+        <PageTransition>{children}</PageTransition>
+        <Footer />
       </body>
     </html>
   );

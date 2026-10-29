@@ -3,6 +3,7 @@ import type {
   ButtonHTMLAttributes,
   ReactNode,
 } from "react";
+import Link from "next/link";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "outline";
 type ButtonSize = "sm" | "md" | "lg";
@@ -48,8 +49,8 @@ function buttonClassName(
   className?: string,
 ) {
   return [
-    "inline-flex items-center justify-center gap-2 rounded-control font-semibold",
-    "transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    "ui-button inline-flex items-center justify-center gap-2 rounded-control font-semibold",
+    "transition-[opacity,transform] duration-motion-fast ease-motion motion-safe:hover:-translate-y-px motion-safe:active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
     "disabled:pointer-events-none disabled:opacity-50",
     variants[variant],
     sizes[size],
@@ -70,10 +71,20 @@ export function Button(props: ButtonProps) {
       ...anchorProps
     } = props;
 
+    const classNames = buttonClassName(variant, size, className);
+
+    if (href.startsWith("/") && !href.startsWith("//")) {
+      return (
+        <Link href={href} className={classNames} {...anchorProps}>
+          {children}
+        </Link>
+      );
+    }
+
     return (
       <a
         href={href}
-        className={buttonClassName(variant, size, className)}
+        className={classNames}
         {...anchorProps}
       >
         {children}

@@ -6,14 +6,15 @@ import {
   Phone,
   UsersRound,
 } from "lucide-react";
+import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 
 const links = [
-  { label: "Accueil", href: "#accueil" },
-  { label: "Produits", href: "#produits" },
-  { label: "Services", href: "#services" },
-  { label: "À propos", href: "#avantages" },
-  { label: "Contact", href: "#contact" },
+  { label: "Accueil", href: "/" },
+  { label: "Produits", href: "/produits" },
+  { label: "Services", href: "/services" },
+  { label: "À propos", href: "/a-propos" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Footer() {
@@ -22,9 +23,9 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 pt-14 pb-8 sm:px-6 md:pt-16 lg:px-8">
         <div className="grid gap-10 border-b border-primary/10 pb-12 sm:grid-cols-2 lg:grid-cols-[1.25fr_0.8fr_1fr_0.8fr] lg:gap-12">
           <div>
-            <a href="#accueil" aria-label="Vyrox — retour à l’accueil">
+            <Link href="/" aria-label="Vyrox — retour à l’accueil">
               <Logo compact />
-            </a>
+            </Link>
             <p className="mt-5 max-w-xs font-heading text-base font-semibold text-primary">
               La technologie au service de votre réussite.
             </p>
@@ -38,12 +39,12 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               {links.map(({ label, href }) => (
                 <li key={href}>
-                  <a
+                  <Link
                     href={href}
-                    className="text-sm text-text-muted transition-colors hover:text-accent"
+                    className="text-sm text-text-muted hover:text-accent"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -111,15 +112,18 @@ export function Footer() {
         <div className="flex flex-col gap-4 pt-6 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Vyrox. Tous droits réservés.</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <a
+            <Link
               href="/politique-de-confidentialite"
               className="hover:text-accent"
             >
               Politique de confidentialité
-            </a>
-            <a href="/conditions-generales" className="hover:text-accent">
+            </Link>
+            <Link href="/faq" className="hover:text-accent">
+              FAQ
+            </Link>
+            <Link href="/conditions-generales" className="hover:text-accent">
               Conditions générales
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { AnimatedText } from "@/components/motion/AnimatedText";
 
 function HeroVisual() {
   return (
@@ -99,27 +100,35 @@ export function Hero() {
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 md:pt-16 md:pb-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:pt-20"
       >
         <div className="relative z-10 max-w-2xl">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent/5 px-3 py-1.5 text-xs font-bold tracking-wide text-accent uppercase">
+          {/* <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent/5 px-3 py-1.5 text-xs font-bold tracking-wide text-accent uppercase">
             Partenaire technologique en Haïti
-          </p>
+          </p> */}
           <h1
             id="hero-title"
             className="font-heading text-[2.65rem] leading-[1.08] font-extrabold tracking-[-0.045em] text-primary sm:text-5xl lg:text-[3.6rem] xl:text-[4rem]"
           >
-            La technologie au service de votre réussite.
+            <AnimatedText as="span" className="block">
+              La technologie au service de votre réussite.
+            </AnimatedText>
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-7 text-text-muted sm:text-lg sm:leading-8">
-            Vyrox vous accompagne dans le choix de vos équipements et de vos
-            services informatiques, en Haïti et à l’international.
-          </p>
+          <AnimatedText as="span" className="mt-6 block" delay={80}>
+            <span className="block max-w-xl text-base leading-7 text-text-muted sm:text-lg sm:leading-8">
+              Vyrox vous accompagne dans le choix de vos équipements et de vos
+              services informatiques, en Haïti et à l’international.
+            </span>
+          </AnimatedText>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button href="#produits" size="lg">
-              Découvrir nos produits
-              <ArrowRight aria-hidden="true" size={18} />
-            </Button>
-            <Button href="#services" size="lg" variant="secondary">
-              Découvrir nos services
-            </Button>
+            <AnimatedText as="span" className="inline-flex" delay={160}>
+              <Button href="#produits" size="lg">
+                Découvrir nos produits
+                <ArrowRight aria-hidden="true" size={18} />
+              </Button>
+            </AnimatedText>
+            <AnimatedText as="span" className="inline-flex" delay={240}>
+              <Button href="#services" size="lg" variant="secondary">
+                Découvrir nos services
+              </Button>
+            </AnimatedText>
           </div>
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-text-muted">
             <span className="inline-flex items-center gap-2">
@@ -132,7 +141,9 @@ export function Hero() {
             </span>
           </div>
         </div>
-        <HeroVisual />
+        <AnimatedText as="div" delay={320}>
+          <HeroVisual />
+        </AnimatedText>
       </div>
     </section>
   );

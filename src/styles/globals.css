@@ -12,6 +12,13 @@
   --radius-card: 1rem;
   --radius-control: 0.625rem;
   --shadow-soft: 0 12px 32px rgb(11 31 68 / 0.08);
+  --duration-motion-fast: 150ms;
+  --duration-motion-base: 250ms;
+  --duration-motion-slow: 400ms;
+  --ease-motion: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-up: fade-up 400ms var(--ease-motion) both;
+  --animate-fade-in: fade-in 400ms var(--ease-motion) both;
+  --animate-fade-scale: fade-scale 400ms var(--ease-motion) both;
 }
 
 * {
@@ -40,6 +47,185 @@ section[id] {
   scroll-margin-top: 6rem;
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes focus-ring {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes focus-field-in {
+  from {
+    opacity: 0.85;
+    transform: translateY(1px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.motion-reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.motion-reveal[data-motion-ready="true"][data-in-view="false"] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.motion-reveal[data-motion-ready="true"][data-in-view="false"]:focus-within {
+  opacity: 1;
+  transform: none;
+}
+
+.motion-stagger > :nth-child(1) {
+  --motion-stagger-delay: 0ms;
+}
+
+.motion-stagger > :nth-child(2) {
+  --motion-stagger-delay: 60ms;
+}
+
+.motion-stagger > :nth-child(3) {
+  --motion-stagger-delay: 120ms;
+}
+
+.motion-stagger > :nth-child(4) {
+  --motion-stagger-delay: 180ms;
+}
+
+.motion-stagger > :nth-child(5) {
+  --motion-stagger-delay: 240ms;
+}
+
+.motion-stagger > :nth-child(6) {
+  --motion-stagger-delay: 300ms;
+}
+
+.motion-stagger > :nth-child(7) {
+  --motion-stagger-delay: 360ms;
+}
+
+.motion-stagger > :nth-child(8) {
+  --motion-stagger-delay: 420ms;
+}
+
+.site-header::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: white;
+  box-shadow: var(--shadow-soft);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.site-header.is-scrolled::before {
+  opacity: 1;
+}
+
+.nav-underline {
+  position: relative;
+}
+
+.nav-underline::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.45rem;
+  left: 0;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--color-accent);
+  content: "";
+  transition: transform 150ms var(--ease-motion);
+}
+
+.nav-underline:hover::after,
+.nav-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.ui-button {
+  position: relative;
+}
+
+.ui-button::after {
+  position: absolute;
+  z-index: 1;
+  inset: -4px;
+  transform: scale(0.96);
+  border: 2px solid var(--color-accent);
+  border-radius: inherit;
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ui-button:focus-visible::after {
+  animation: focus-ring 150ms var(--ease-motion) both;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :where(input, select, textarea):focus-visible {
+    animation: focus-field-in 150ms var(--ease-motion);
+  }
+}
+
+.motion-card {
+  transition: transform 150ms var(--ease-motion);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .motion-card:hover {
+    transform: translateY(-4px);
+  }
+}
+
 .skip-link {
   position: fixed;
   z-index: 100;
@@ -65,6 +251,15 @@ section[id] {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .motion-reveal[data-motion-ready="true"][data-in-view="false"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .site-header::before {
+    transition-duration: 0ms;
   }
 }
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -45,7 +46,12 @@ export function ProductCard({ product }: ProductCardProps) {
               {product.brand}
             </p>
             <h3 className="mt-2 font-heading text-lg leading-snug font-bold text-primary">
-              {product.name}
+              <Link
+                href={`/produits/${product.id}`}
+                className="rounded-sm hover:text-accent"
+              >
+                {product.name}
+              </Link>
             </h3>
           </div>
           <Badge variant={status.variant}>{status.label}</Badge>
@@ -59,7 +65,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </p>
         </div>
         <Button
-          href={`mailto:contact@vyrox.ht?subject=${encodeURIComponent(`Demande de devis — ${product.name}`)}`}
+          href={`/demander-un-devis?produit=${encodeURIComponent(product.id)}`}
           variant="secondary"
           size="sm"
           className="mt-5 w-full"

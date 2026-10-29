@@ -7,6 +7,7 @@
 - Les prix affichés sont indicatifs. Les produits ont tous une disponibilité à confirmer : aucun n’est présenté comme en stock sans confirmation.
 - Les illustrations des produits se trouvent dans `public/products/`. Elles sont des visuels temporaires, pas des photos de produits réels.
 - Le logo SVG de démonstration se trouve dans `public/vyrox-logo.svg`.
+- Inter et Manrope sont auto-hébergées dans `src/app/fonts/` avec leurs licences OFL; elles ne nécessitent pas de connexion à Google Fonts au démarrage ou au build.
 
 ## Éléments à remplacer
 
@@ -16,12 +17,24 @@
 - Remplacer les illustrations SVG par les images officielles lorsqu’elles seront disponibles.
 - Définir `NEXT_PUBLIC_SITE_URL` avec l’URL canonique réelle du site; `https://vyrox.ht` est une valeur provisoire.
 - Définir `NEXT_PUBLIC_WHATSAPP_NUMBER` au format international sans séparateurs pour afficher le bouton WhatsApp.
-- Les liens Produits, Services, politique de confidentialité et conditions générales pointent vers des pages à créer.
+- Les pages Contact et Demande de devis contiennent des formulaires d’interface désactivés. Leur transmission côté serveur reste à configurer; ne pas collecter de demandes avant cette étape.
+- Les pages À propos, confidentialité et conditions générales contiennent des textes provisoires à valider par Vyrox, notamment les informations institutionnelles et juridiques.
+
+## Pages disponibles
+
+- `/` : accueil.
+- `/produits` et `/produits/[slug]` : catalogue filtrable/recherchable et fiches produits.
+- `/services` et `/services/[slug]` : services et détails des prestations.
+- `/a-propos`, `/contact`, `/demander-un-devis`, `/faq`.
+- `/politique-de-confidentialite` et `/conditions-generales`.
+- Les formulaires Contact et Devis sont volontairement désactivés jusqu’à l’intégration d’un traitement serveur.
+- `/robots.txt` et `/sitemap.xml` pour les moteurs de recherche.
 
 ## Décisions de design
 
 - Palette basée sur le bleu nuit et le bleu électrique de Vyrox, avec des fonds neutres et sans dégradés décoratifs.
-- Manrope est utilisée pour les titres et Inter pour le texte courant, via `next/font/google`.
+- Manrope est utilisée pour les titres et Inter pour le texte courant, via `next/font/local` et des fichiers WOFF2 variables auto-hébergés.
+- Les contenus de toutes les pages ont une animation d’entrée légère avec un décalage progressif, les cartes et boutons ont un retour visuel au survol, et `prefers-reduced-motion` désactive ces effets.
 - Tailwind CSS v4 utilise ici ses tokens CSS `@theme` dans `src/styles/globals.css`; aucun `tailwind.config.ts` n’est nécessaire.
 - La page d’accueil est un Server Component; seuls l’en-tête (état de défilement) et le menu mobile sont interactifs.
 - L’App Router est utilisé pour la landing page. La route API existante sous `src/pages/api/` est conservée.

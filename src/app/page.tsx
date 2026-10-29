@@ -5,15 +5,13 @@ import { Hero } from "@/components/sections/Hero";
 import { PopularProducts } from "@/components/sections/PopularProducts";
 import { ProductCategories } from "@/components/sections/ProductCategories";
 import { Services } from "@/components/sections/Services";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
 
 const title = "Vyrox — La technologie au service de votre réussite";
 const description =
   "Équipez et accompagnez vos projets avec des produits informatiques et des services technologiques fiables en Haïti et à l’international.";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: title },
   description,
   alternates: {
     canonical: "/",
@@ -52,7 +50,6 @@ export default function Home() {
           __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <Header />
       <main id="contenu-principal">
         <Hero />
         <ProductCategories />
@@ -61,7 +58,6 @@ export default function Home() {
         <Advantages />
         <FinalCTA />
       </main>
-      <Footer />
     </>
   );
 }

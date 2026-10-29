@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const links = [
-  { label: "Accueil", href: "#accueil" },
-  { label: "Produits", href: "#produits" },
-  { label: "Services", href: "#services" },
-  { label: "À propos", href: "#avantages" },
-  { label: "Contact", href: "#contact" },
+  { label: "Accueil", href: "/" },
+  { label: "Produits", href: "/produits" },
+  { label: "Services", href: "/services" },
+  { label: "À propos", href: "/a-propos" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function MobileMenu() {
@@ -96,24 +97,24 @@ export function MobileMenu() {
             <ul className="flex flex-col">
               {links.map(({ label, href }) => (
                 <li key={href}>
-                  <a
+                  <Link
                     href={href}
                     onClick={closeMenu}
                     className="block rounded-control px-3 py-3 text-base font-semibold text-primary hover:bg-bg-muted"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </nav>
-          <a
-            href="#contact"
+          <Link
+            href="/demander-un-devis"
             onClick={closeMenu}
             className="mt-3 flex min-h-11 items-center justify-center rounded-control bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-primary"
           >
             Demander un devis
-          </a>
+          </Link>
         </div>
       ) : null}
     </div>

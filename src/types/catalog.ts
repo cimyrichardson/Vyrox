@@ -17,10 +17,12 @@ export type Product = {
   id: string;
   name: string;
   brand: string;
+  category: string;
   image: string;
   price: number;
   currency: "USD" | "HTG";
   availability: ProductAvailability;
+  createdAt: string;
 };
 
 export type Service = {

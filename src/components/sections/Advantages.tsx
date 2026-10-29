@@ -6,6 +6,8 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger } from "@/components/motion/Stagger";
 
 const advantages = [
   {
@@ -42,27 +44,31 @@ export function Advantages() {
       className="py-16 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          id="advantages-title"
-          eyebrow="Pourquoi Vyrox"
-          title="Un accompagnement qui commence par l’écoute."
-          description="Les bons choix technologiques partent de vos objectifs, de vos contraintes et de la façon dont vous travaillez."
-        />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal>
+          <SectionHeading
+            id="advantages-title"
+            eyebrow="Pourquoi Vyrox"
+            title="Un accompagnement qui commence par l’écoute."
+            description="Les bons choix technologiques partent de vos objectifs, de vos contraintes et de la façon dont vous travaillez."
+          />
+        </Reveal>
+        <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {advantages.map(({ title, description, icon: Icon }) => (
-            <Card className="p-5 sm:p-6" key={title}>
-              <span className="inline-flex size-11 items-center justify-center rounded-control bg-accent/8 text-accent">
-                <Icon aria-hidden="true" size={21} strokeWidth={1.8} />
-              </span>
-              <h3 className="mt-5 font-heading text-lg font-bold text-primary">
-                {title}
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-text-muted">
-                {description}
-              </p>
-            </Card>
+            <Reveal key={title}>
+              <Card className="p-5 sm:p-6">
+                <span className="inline-flex size-11 items-center justify-center rounded-control bg-accent/8 text-accent">
+                  <Icon aria-hidden="true" size={21} strokeWidth={1.8} />
+                </span>
+                <h3 className="mt-5 font-heading text-lg font-bold text-primary">
+                  {title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-text-muted">
+                  {description}
+                </p>
+              </Card>
+            </Reveal>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
